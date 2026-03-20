@@ -21,7 +21,7 @@ public class ImagesController {
     //*
 
     @PostMapping
-    public ResponseEntity uploadImage(@RequestParam("file")  MultipartFile file,
+    public ResponseEntity uploadImage(@RequestParam("file")  MultipartFile file, //recebe um parametro
                                       @RequestParam("name")String name,
                                       @RequestParam("tags") List<String> tags
     ) {
