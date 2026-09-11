@@ -1,5 +1,6 @@
 package io.spring.image.demo.infra.repository;
 
+
 import io.spring.image.demo.domain.entity.Image;
 import io.spring.image.demo.domain.enums.ImageExtension;
 import io.spring.image.demo.infra.repository.specs.GenericSpecs;
@@ -15,16 +16,6 @@ import static io.spring.image.demo.infra.repository.specs.ImageSpecs.*;
 import static org.springframework.data.jpa.domain.Specification.*;
 
 public interface ImageRepository extends JpaRepository<Image, String>, JpaSpecificationExecutor<Image> {
-
-    /**
-     *
-     * @param extension
-     * @param query
-     * @return
-     *
-     * SELECT * FROM IMAGE WHERE 1 = 1 AND EXTENSION = 'PNG' AND (NAME LIKE 'QUERY' OR TAGS LIKE 'QUERY')
-     *
-     */
 
     default List<Image> findByExtensionAndNameOrTagsLike(ImageExtension extension, String query){
         Specification<Image> spec = where(conjunction());

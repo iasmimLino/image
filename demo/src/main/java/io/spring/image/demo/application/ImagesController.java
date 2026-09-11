@@ -21,14 +21,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/images")
 @Slf4j
 @RequiredArgsConstructor
-public class ImagesApplicationController {
+@CrossOrigin("*")
+public class ImagesController {
 
     private final ImageService service;
     private final ImageMapper mapper;
 
     @PostMapping
     public ResponseEntity save(
-            @RequestParam("file")  MultipartFile file,
+            @RequestParam("file") MultipartFile file,
             @RequestParam("name")String name,
             @RequestParam("tags") List<String> tags
     ) throws IOException {
@@ -36,7 +37,7 @@ public class ImagesApplicationController {
         Image image = mapper.mapToImage(file, name, tags);
         Image savedImage =  service.save(image);
         URI imageUri = buildImageURL(savedImage);
-        //http://localhost:8080/upload/asfsdfsfg01012;  url
+        //http://localhost:8080/image/asfsdfsfg01012;  url
 
         //return ResponseEntity.ok().build();
         return ResponseEntity.created(imageUri).build();
@@ -57,24 +58,21 @@ public class ImagesApplicationController {
 
         return new ResponseEntity<>(image.getFile(), headers, HttpStatus.OK);
     }
-
     @GetMapping
-    public ResponseEntity<List<ImageDTO>> search (
-            @RequestParam(value = "extension",required = false, defaultValue = "")String extension,
-            @RequestParam(value = "query", required = false)String query) throws InterruptedException{
-            Thread.sleep(3000L);
-            //var result = service.search(ImageExtension.valueOf(extension), query);
+    public ResponseEntity<List<ImageDTO>>search(
+        @RequestParam(value = "extension", required = false, defaultValue = "")String extension,
+                @RequestParam(value = "query", required = false)String query) throws InterruptedException{
+        Thread.sleep(3000L);
+        //var result = service.search(ImageExtension.valueOf(extension), query);
+        var result = service.search(ImageExtension.ofName(extension), query);
 
-            var result = service.search(ImageExtension.ofName(extension), query);
-            var images = result.stream().map(image -> {
-                var url = buildImageURL(image);
-                return mapper.imageToDTO(image,url.toString());
-            }).collect(Collectors.toList());
-
+        var images = result.stream().map(image -> {
+            var url = buildImageURL(image);
+            return mapper.imageToDTO(image, url.toString());
+        }).collect(Collectors.toList());
 
             return ResponseEntity.ok(images);
     }
-
     //método que cria a url da imagem
     private URI buildImageURL(Image image) {
         String imagePath = "/"+image.getId();

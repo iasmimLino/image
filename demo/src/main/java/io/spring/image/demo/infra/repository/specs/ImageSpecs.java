@@ -5,7 +5,6 @@ import io.spring.image.demo.domain.enums.ImageExtension;
 import org.springframework.data.jpa.domain.Specification;
 
 public class ImageSpecs {
-
     private ImageSpecs(){} // não quero que seja instanciado esta classe, teremores apenas métodos statics
 
     public static Specification<Image> extensionEqual (ImageExtension extension){
@@ -18,8 +17,5 @@ public class ImageSpecs {
     public static Specification<Image> tagsLike (String tags){
         return (root, q, cb)-> cb.like(cb.upper(root.get("tags")),"%"+tags.toUpperCase()+"%");
     }
-
-
-
-
 }
+
