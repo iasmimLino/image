@@ -1,6 +1,6 @@
 import React from "react";
 interface ImageCardProps{
-    imageUrl: string;
+    imageUrl?: string;
     imageName?: string;
     imageSize?: string;
     uploadDate?: string;
