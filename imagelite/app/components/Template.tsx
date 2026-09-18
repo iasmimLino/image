@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
   return(
     <footer className="bg-emerald-300 text-black py-3">
       <div className="container mx-auto px-4 flex justify-between items-center px-4">
-        <h1>Developed by Iasmim L.</h1>
+        <h1>Developed by Linux</h1>
       </div>
     </footer>
   );
