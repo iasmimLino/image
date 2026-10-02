@@ -64,14 +64,14 @@ export default function Galeria() {
             <option value="GIF">GIF</option>
           </select>
           <button
-            className="bg-blue-500 hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-60 text-white font-bold py-2 px-4 rounded"
+            className="bg-yellow-200 hover:bg-yellow-100 disabled:cursor-not-allowed disabled:opacity-60 text-black font-bold py-2 px-4 rounded"
             onClick={searchImages}
             disabled={isLoading}
             aria-busy={isLoading}
           >
             {isLoading ? 'Buscando...' : 'Search'}
           </button>
-          <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Add New </button>
+          <button className="bg-purple-300 hover:bg-purple-200 text-black font-bold py-2 px-4 rounded">Add New </button>
         </div>
       </section>
       {isLoading && (

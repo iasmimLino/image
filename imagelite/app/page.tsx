@@ -1,11 +1,13 @@
 import Link from "next/link";
+import { Template } from "./components";
 import { PrimeiroComponente } from "./components/PrimeiroComponente";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-black text-white flex items-center justify-center">
+    <Template>
+       <div className="min-h-screen bg-gradient-to-br from-purple-400 via-purple-800 to-black text-white flex items-center justify-center">
       <main className="flex flex-col items-center gap-6 text-center px-6">
-        <h1 className="text-6xl font-extrabold tracking-tight text-[#5473D6] drop-shadow-[0_0_12px_rgba(138, 228, 150, 0.93)]">
+        <h1 className="text-6xl font-extrabold tracking-tight text-[#C673DF] drop-shadow-[0_0_12px_rgba(148, 196, 154, 0.93)]">
           Welcome
         </h1>
 
@@ -23,5 +25,6 @@ export default function Home() {
         </Link>
       </main>
     </div>
+    </Template>
   );
 }
