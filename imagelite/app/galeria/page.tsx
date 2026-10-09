@@ -3,6 +3,8 @@ import { Template, ImageCard } from '../components';
 import { useImageService } from '../resource/service';
 import { useState } from 'react';
 import { Image } from '../resource/image';
+import { Button } from '../components';
+import { useRouter } from 'next/navigation';
 
 export default function Galeria() {
 
@@ -13,6 +15,7 @@ export default function Galeria() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [searchError, setSearchError] = useState('');
+  const router = useRouter();
 
   async function searchImages() {
     setIsLoading(true);
@@ -71,7 +74,14 @@ export default function Galeria() {
           >
             {isLoading ? 'Buscando...' : 'Search'}
           </button>
-          <button className="bg-purple-300 hover:bg-purple-200 text-black font-bold py-2 px-4 rounded">Add New </button>
+          <Button
+            type="button"
+            variant="danger"
+            onClick={() => router.push('/upload')}
+          >
+            Add New
+          </Button>
+          
         </div>
       </section>
       {isLoading && (
@@ -93,4 +103,6 @@ export default function Galeria() {
       )}
     </Template>
   );
+
+  
 }
