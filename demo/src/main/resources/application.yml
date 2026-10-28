@@ -5,3 +5,6 @@ spring:
     multipart:
       max-file-size: 20MB
       max-request-size: 20MB
+      app:
+        cors:
+          allowed-origin: ${IMAGE_API_ALLOWED_ORIGIN:http://localhost:3000}

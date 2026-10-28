@@ -5,12 +5,16 @@ import io.spring.image.demo.domain.enums.ImageExtension;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import java.time.format.DateTimeFormatter;
 
 import java.io.IOException;
 import java.util.List;
 
 @Component
 public class ImageMapper {
+
+    private static final DateTimeFormatter BRAZILIAN_DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public Image mapToImage(MultipartFile file, String name, List<String> tags) throws IOException {
         return Image.builder()
                 .name(name)
@@ -27,7 +31,7 @@ public class ImageMapper {
                 .extension(image.getExtension().name())
                 .name(image.getName())
                 .size(image.getSize())
-                .uploadDate(image.getUploadDate().toLocalDate())
+                .uploadDate(image.getUploadDate().toLocalDate().format(BRAZILIAN_DATE_FORMATTER))
                 .build();
     }
 }
